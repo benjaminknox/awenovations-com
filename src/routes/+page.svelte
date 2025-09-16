@@ -1,13 +1,15 @@
 <script lang="ts">
 	import logo from '$lib/assets/logo.svg';
 	import avatar from '$lib/assets/avatar.png';
+	import darkLogo from '$lib/assets/dark-logo.svg';
 	import Icon from '@awenovations/aura/icon.svelte';
 
 </script>
 
 <div class="wrapper">
   <div class="margin" ></div>
-  <image src={logo} />
+  <image class="logo light" src={logo} />
+  <image class="logo dark" src={darkLogo} />
   <div class="content">
     Awenovations is a software business building focused micro-SaaS applications. Every product is built on a custom design system that ensures speed, consistency, and clarity from concept to release. Awenovations prioritizes simple, effective solutions that scale without unnecessary complexity.
   </div>
@@ -70,6 +72,26 @@
         }
       }
     }
+  }
 
+
+  .logo.light {
+    @media (prefers-color-scheme: dark) {
+      display: none;
+    }
+
+    :global([data-theme="dark"]) & {
+      display: none;
+    }
+  }
+
+  .logo.dark {
+    @media (prefers-color-scheme: light) {
+      display: none;
+    }
+
+    :global([data-theme="light"]) & {
+      display: none;
+    }
   }
 </style>
